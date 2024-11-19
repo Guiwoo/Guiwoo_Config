@@ -16,5 +16,12 @@
    - chrome c
 4. karabiner
    - 마우스 없이 hjkl로 움직이기
+   - happy hacking 키보드 세팅 추가 
+    - vim move arrow keycode chagne
+    - left arrow : left_option + h
+    - up arrow : left_option + j
+    - right arrow : left_option + k
+    - down arrow : left_option + l
 5. Vimac
    - 마우스 없이 사용할떄 팁
+   - option + cmd + .
