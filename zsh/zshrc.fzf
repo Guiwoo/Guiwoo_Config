@@ -1,0 +1,167 @@
+#!/bin/zsh
+
+local -a precmd_functions
+precmd_functions+=( fzf_default_directory )
+
+ignore_dir () {
+# default value
+local EXCLUDE_DIR="! -path \"*/.gopath~/*\" ! -path \"*/.git/*\" ! -path \"*/vendor/*\"" 
+
+if [[ -f ~/.zsh.ignore ]]; then
+    EXCLUDE_DIR=""
+    for line in "${(@f)"$(<~/.zsh.ignore)"}"
+    {
+        EXCLUDE_DIR=${EXCLUDE_DIR}"! -path \"*/${line}/*\" "
+    }
+fi
+
+echo "${EXCLUDE_DIR}"
+}
+
+fzf_default_directory() {
+    ex_dir=$( ignore_dir )
+    export FZF_FILE_COMPLETION="command find -L $(get_default_directory) \\( -path '*/\\.*' -o -fstype 'dev' -o -fstype 'proc' \\) -prune \
+        -o -type f -print \
+        -o -type d -print \
+        -o -type l -print \
+        ${ex_dir} 2> /dev/null"
+}
+
+ctags_directory() {
+    local absolute_home=$HOME
+    local forMac=`uname -a | grep -i -e Darwin`
+    local READLINK="readlink -f"
+    if [ "$forMac" != "" ]; then
+        READLINK="readlink"
+    fi
+    [[ -z "$_Z_NO_RESOLVE_SYMLINKS" ]] && absolute_home=$($READLINK $HOME)
+    local current_directory="${PWD:a}"
+    [[ -z "$_Z_NO_RESOLVE_SYMLINKS" ]] && current_directory="${0:a:h}"
+    current_directory=${current_directory//${absolute_home}/}
+    local -aU depths
+    depths=(${(s:/:)current_directory})
+
+    if [[ -n "${current_directory}" ]]; then
+       ctags -f ~/${depths[1]}/tags -R ~/${depths[1]}/*
+   else
+       ctags -R .
+   fi
+}
+
+get_default_directory() {
+    local -aU default_list
+    local absolute_home=$HOME
+    local forMac=`uname -a | grep -i -e Darwin`
+    local READLINK="readlink -f"
+    if [ "$forMac" != "" ]; then
+        READLINK="readlink"
+    fi
+    [[ -z "$_Z_NO_RESOLVE_SYMLINKS" ]] && absolute_home=$($READLINK $HOME)
+    local current_directory="${PWD:a}"
+    [[ -z "$_Z_NO_RESOLVE_SYMLINKS" ]] && current_directory="${0:a:h}"
+    current_directory=${current_directory//${absolute_home}/}
+    local -aU depths
+    depths=(${(s:/:)current_directory})
+
+    [[ "${0:a}" != "$absolute_home" ]] && default_list+="."
+    [[ -n "${current_directory}" ]] && default_list+="~/${depths[1]}"
+    #[[ -f ~/rpmbuild ]] && default_list+="~/rpmbuild"
+    [[ "${HOME}" =~ "newro" ]] && default_list+=( "~/develconfig" "~/.oh-my-zsh" "~/.fzf" )
+    [[ -a ~/.fzf.directory ]] && default_list+=( `cat ~/.fzf.directory` )
+
+    echo -n "${(j: :)default_list}"
+}
+
+fzf-file-wrapper() {
+    export FZF_CTRL_T_COMMAND=$FZF_FILE_COMPLETION
+    fzf-file-widget
+}
+
+fzf-cd-wrapper() {
+    export FZF_ALT_C_COMMAND="command find -L $(get_default_directory) \\( -path '*/\\.*' -o -fstype 'dev' -o -fstype 'proc' \\) -prune \
+        -o -type d -print 2> /dev/null"
+    fzf-cd-widget
+}
+
+vim-mrufile-widget() {
+  local cmd="${VIM_MRU_COMMAND:-"command grep '^>' ~/.viminfo \
+    | cut -c3-"}"
+  setopt localoptions pipefail 2> /dev/null
+  local mrufile="${$(eval "$cmd | $(__fzfcmd) +m $FZF_CTRL_R_OPTS"):-.}"
+  local conv_mrufile=${mrufile//\~/$HOME}
+  [ -f $conv_mrufile ] && LBUFFER="vim $conv_mrufile"
+  local ret=$?
+  return $ret
+}
+
+# fshow - git commit browser (enter for show, ctrl-d for diff)
+fshow() {
+  local out shas sha q k
+  while out=$(
+      git lg -9999 "$@" |
+      fzf-tmux --ansi --multi --no-sort --reverse --query="$q" \
+          --print-query --expect=ctrl-d); do
+    q=$(head -1 <<< "$out")
+    k=$(head -2 <<< "$out" | tail -1)
+    shas=$(sed '1,2d;s/^[^a-z0-9]*//;/^$/d' <<< "$out" | awk '{print $1}')
+    [ -z "$shas" ] && continue
+    if [ "$k" = ctrl-d ]; then
+      git diff --color=always $shas | less -R
+    else
+      for sha in $shas; do
+        git show --color=always $sha | less -R
+      done
+    fi
+  done
+}
+
+# fco - checkout git branch/tag
+fco() {
+  local tags branches target
+  tags=$(
+    git tag | awk '{print "\x1b[31;1mtag\x1b[m\t" $1}') || return
+  branches=$(
+    git branch --all | grep -v HEAD             |
+    sed "s/.* //"    | sed "s#remotes/[^/]*/##" |
+    sort -u          | awk '{print "\x1b[34;1mbranch\x1b[m\t" $1}') || return
+  target=$(
+    (echo "$tags"; echo "$branches") |
+    fzf-tmux -l30 -- --no-hscroll --ansi +m -d "\t" -n 2) || return
+  git checkout $(echo "$target" | awk '{print $2}')
+}
+
+# ftpane - switch pane (@george-b)
+ftpane() {
+  local panes current_window current_pane target target_window target_pane
+  panes=$(tmux list-panes -s -F '#I:#P - #{pane_current_path} #{pane_current_command}')
+  current_pane=$(tmux display-message -p '#I:#P')
+  current_window=$(tmux display-message -p '#I')
+
+  target=$(echo "$panes" | grep -v "$current_pane" | fzf +m --reverse) || return
+
+  target_window=$(echo $target | awk 'BEGIN{FS=":|-"} {print$1}')
+  target_pane=$(echo $target | awk 'BEGIN{FS=":|-"} {print$2}' | cut -c 1)
+
+  if [[ $current_window -eq $target_window ]]; then
+    tmux select-pane -t ${target_window}.${target_pane}
+  else
+    tmux select-pane -t ${target_window}.${target_pane} &&
+    tmux select-window -t $target_window
+  fi
+}
+
+export FZF_TMUX_HEIGHT=20%
+export FZF_DEFAULT_OPTS="--layout=reverse --info=inline --multi --preview '([[ -f {} ]] && (bat --style=numbers --color=always {} || cat {})) || ([[ -d {} ]] && (tree -C {} | less)) || echo {} 2> /dev/null | head -200' --cycle --bind '?:toggle-preview' --bind 'ctrl-f:page-down,ctrl-b:page-up,alt-j:down,alt-k:up,tab:down,shift-tab:up,space:select' --bind 'alt-enter:execute-silent(echo {+} | sed -r \"s/^\[.*\]: //g\" | pbcopy)'"
+# color scheme on https://minsw.github.io/fzf-color-picker/
+export FZF_DEFAULT_OPTS=$FZF_DEFAULT_OPTS' --color=fg:#e6c1c1,bg:-1,hl:#83acd6 --color=fg+:#a3d6aa,bg+:#262626,hl+:#5ed1f7 --color=info:#e6ffa8,prompt:#edf28c,pointer:#796ef0 --color=marker:#87cf3a,spinner:#e67761,header:#72baba'
+
+export FZF_COMPLETION_TRIGGER="."
+
+zle     -N    fzf-file-wrapper
+bindkey '\ef' fzf-file-wrapper
+zle     -N    vim-mrufile-widget
+bindkey '\er' vim-mrufile-widget
+zle     -N    fzf-cd-wrapper
+bindkey '\ed' fzf-cd-wrapper
+
+[ -f ~/.zshrc.fzf.local ] && source ~/.zshrc.fzf.local
