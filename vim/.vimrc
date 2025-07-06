@@ -90,9 +90,9 @@ augroup END
 set termguicolors
 colorscheme gruvbox
 
-nnoremap <F8> :NERDTreeFocus<CR>
+nnoremap <C-e> :NERDTreeFocus<CR>
 nnoremap <C-n> :NERDTree<CR>
-nnoremap <F9> :NERDTreeToggle<CR>
+nnoremap <C-e> :NERDTreeToggle<CR>
 nnoremap <C-f> :NERDTreeFind<CR>
 
 " Start NERDTree and leave the cursor in it.
