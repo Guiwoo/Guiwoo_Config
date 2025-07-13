@@ -1,0 +1,32 @@
+# pane
+background = 282c34
+background-opacity = 0.9
+foreground = ffffff
+
+# window
+window-padding-color = background
+window-padding-balance = true
+window-padding-y = 2
+
+# font
+font-family = CascadiaCode
+
+# cursor
+cursor-color = #FFC107
+cursor-click-to-move = true
+
+# mouse
+focus-follows-mouse = true
+
+# copy
+copy-on-select = true
+clipboard-write=allow
+
+
+keybind = ctrl+z=close_surface
+keybind = ctrl+v=new_split:right
+keybind = ctrl+h=new_split:down
+
+
+
+
