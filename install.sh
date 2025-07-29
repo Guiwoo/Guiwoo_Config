@@ -25,6 +25,7 @@ graphviz
 yazi
 zoxide
 fzf
+ripgrep
 )
 
 CASKS=(
