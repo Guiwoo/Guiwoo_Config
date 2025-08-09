@@ -15,6 +15,9 @@ font-family = CascadiaCode
 cursor-color = #FFC107
 cursor-click-to-move = true
 
+#
+bold-is-bright=true
+
 # mouse
 focus-follows-mouse = true
 
@@ -22,11 +25,22 @@ focus-follows-mouse = true
 copy-on-select = true
 clipboard-write=allow
 
+#
+quick-terminal-position=center
 
-keybind = ctrl+z=close_surface
-keybind = ctrl+v=new_split:right
-keybind = ctrl+h=new_split:down
+# key bind
+keybind= ctrl+k=goto_split:up
+keybind= ctrl+j=goto_split:down
+keybind= ctrl+h=goto_split:left
+keybind= ctrl+l=goto_split:right
 
+keybind = ctrl+o>z=toggle_split_zoom
 
+keybind = ctrl+o>e=equalize_splits
 
+keybind = ctrl+o>x=close_surface
 
+keybind = ctrl+o>v=new_split:right
+keybind = ctrl+o>h=new_split:down
+
+keybind = ctrl+o>t=toggle_quick_terminal

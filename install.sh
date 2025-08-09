@@ -26,6 +26,7 @@ yazi
 zoxide
 fzf
 ripgrep
+ghostty
 )
 
 CASKS=(
