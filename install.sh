@@ -27,6 +27,7 @@ zoxide
 fzf
 ripgrep
 ghostty
+cargro
 )
 
 CASKS=(
