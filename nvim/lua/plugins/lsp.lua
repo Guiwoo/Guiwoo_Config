@@ -11,7 +11,6 @@ return {
 
     -- Useful status updates for LSP.
     { 'j-hui/fidget.nvim', opts = {} },
-
     -- Allows extra capabilities provided by blink.cmp
     'saghen/blink.cmp',
   },
@@ -197,7 +196,11 @@ return {
     local servers = {
       -- clangd = {},
       bashls = {},
-      gopls = {},
+      gopls = {
+        on_attach= on_attach,
+        cmd={"gopls"},
+        filetypes = {"go","gomod","gowork","gotmpl"}
+      },
       -- pyright = {},
       -- rust_analyzer = {},
       -- ... etc. See `:help lspconfig-all` for a list of all the pre-configured LSPs
