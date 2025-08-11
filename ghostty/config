@@ -8,39 +8,54 @@ window-padding-color = background
 window-padding-balance = true
 window-padding-y = 2
 
+#focus
+unfocused-split-fill = #f2f2f2
+unfocused-split-opacity = 0.5
+
+# window
+window-padding-color = background
+window-padding-balance = true
+window-padding-x =15
+window-padding-y = 10
+window-subtitle = working-directory
+
+split-divider-color = #b76ba3
+
+#quick terminal
+quick-terminal-position = center
+
 # font
-font-family = CascadiaCode
+font-family = "CascadiaCode" 
 
 # cursor
 cursor-color = #FFC107
 cursor-click-to-move = true
 
-#
 bold-is-bright=true
 
 # mouse
 focus-follows-mouse = true
 
+# quick terminal
+quick-terminal-position=center
+keybind = ctrl+o>c=toggle_quick_terminal
+
 # copy
-copy-on-select = true
+copy-on-select = clipboard
 clipboard-write=allow
 
-#
-quick-terminal-position=center
-
-# key bind
-keybind= ctrl+k=goto_split:up
-keybind= ctrl+j=goto_split:down
-keybind= ctrl+h=goto_split:left
-keybind= ctrl+l=goto_split:right
-
-keybind = ctrl+o>z=toggle_split_zoom
-
-keybind = ctrl+o>e=equalize_splits
+# keybind
+keybind = ctrl+o>u=resize_split:up,10
+keybind = ctrl+o>d=resize_split:down,10
+keybind = ctrl+o>l=resize_split:left,10
+keybind = ctrl+o>r=resize_split:right,10
 
 keybind = ctrl+o>x=close_surface
-
 keybind = ctrl+o>v=new_split:right
 keybind = ctrl+o>h=new_split:down
+keybind = ctrl+o>z=toggle_split_zoom
 
-keybind = ctrl+o>t=toggle_quick_terminal
+keybind = ctrl+j=goto_split:down
+keybind = ctrl+k=goto_split:up
+keybind = ctrl+h=goto_split:left
+keybind = ctrl+l=goto_split:right
