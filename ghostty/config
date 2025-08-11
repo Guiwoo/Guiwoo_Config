@@ -1,15 +1,10 @@
 # pane
 background = 282c34
-background-opacity = 0.85
+background-opacity = 0.9
 foreground = ffffff
 
-# window
-window-padding-color = background
-window-padding-balance = true
-window-padding-y = 2
-
 #focus
-unfocused-split-fill = #f2f2f2
+#unfocused-split-fill = #f2f2f2
 unfocused-split-opacity = 0.5
 
 # window
@@ -63,4 +58,3 @@ keybind = ctrl+j=goto_split:down
 keybind = ctrl+k=goto_split:up
 keybind = ctrl+h=goto_split:left
 keybind = ctrl+l=goto_split:right
-keybind = shift+enter=text:\n
