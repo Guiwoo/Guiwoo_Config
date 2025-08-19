@@ -73,6 +73,7 @@ return {
         map("grf", function ()
             vim.cmd('normal! <C-o>')
         end, "[G]o [f]orward previous position")
+
         -- Jump to the implementation of the word under your cursor.
         --  Useful when your language has ways of declaring types without an actual implementation.
         map("gri", require("telescope.builtin").lsp_implementations, "[G]oto [I]mplementation")

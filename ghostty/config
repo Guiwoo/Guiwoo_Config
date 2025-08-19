@@ -1,6 +1,6 @@
 # pane
 background = 282c34
-background-opacity = 0.9
+background-opacity = 0.85
 foreground = ffffff
 
 #focus
@@ -58,3 +58,4 @@ keybind = ctrl+j=goto_split:down
 keybind = ctrl+k=goto_split:up
 keybind = ctrl+h=goto_split:left
 keybind = ctrl+l=goto_split:right
+keybind = shift+enter=text:\n

@@ -272,14 +272,11 @@
                             "to": [{ "key_code": "left_command" }]
                         },
                         {
-                            <<<<<<< HEAD
                             "from": { "key_code": "right_option" },
                             "to": [{ "key_code": "f18" }]
                         },
                         {
-                            =======
-                            >>>>>>> a72c053 (feater company)
-                            "from": { "key_code": "right_command" },
+                                                        "from": { "key_code": "right_command" },
                             "to": [{ "key_code": "f18" }]
                         }
                     ]
@@ -314,7 +311,6 @@
                     ]
                 },
                 {
-                    "identifiers": { "is_keyboard": true },
                     "simple_modifications": [
                         {
                             "from": { "key_code": "caps_lock" },
@@ -333,6 +329,13 @@
                             "to": [{ "key_code": "f18" }]
                         }
                     ]
+                    "identifiers": {
+                        "is_keyboard": true,
+                        "is_pointing_device": true,
+                        "product_id": 16403,
+                        "vendor_id": 12625
+                    },
+                    "ignore": false
                 }
             ],
             "fn_function_keys": [
@@ -343,10 +346,25 @@
             ],
             "name": "Default profile",
             "selected": true,
+            "simple_modifications": [
+                {
+                    "from": { "key_code": "caps_lock" },
+                    "to": [{ "key_code": "left_command" }]
+                },
+                {
+                    "from": { "key_code": "left_command" },
+                    "to": [{ "key_code": "left_control" }]
+                },
+                {
+                    "from": { "key_code": "right_command" },
+                    "to": [{ "key_code": "f18" }]
+                }
+            ],
             "virtual_hid_keyboard": {
                 "country_code": 0,
                 "keyboard_type_v2": "ansi"
             }
         }
     ]
+}
 }
