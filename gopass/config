@@ -1,0 +1,4 @@
+[mounts]
+	path = /Users/guiwoopark/.local/share/gopass/stores/root
+[recipients]
+	hash = 9634f04ecb3abd3a6aaf7a103a2760d872ba881947ce1bced016e9e47cce47da

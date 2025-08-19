@@ -5,6 +5,33 @@
             "complex_modifications": {
                 "rules": [
                     {
+                        "description": "Left Option + [ → Home, Left Option + ] → End",
+                        "manipulators": [
+                            {
+                                "from": {
+                                    "key_code": "open_bracket",
+                                    "modifiers": {
+                                        "mandatory": ["left_option"],
+                                        "optional": ["any"]
+                                    }
+                                },
+                                "to": [{ "key_code": "home" }],
+                                "type": "basic"
+                            },
+                            {
+                                "from": {
+                                    "key_code": "close_bracket",
+                                    "modifiers": {
+                                        "mandatory": ["left_option"],
+                                        "optional": ["any"]
+                                    }
+                                },
+                                "to": [{ "key_code": "end" }],
+                                "type": "basic"
+                            }
+                        ]
+                    },
+                    {
                         "description": "Mouse Move",
                         "manipulators": [
                             {
@@ -156,7 +183,7 @@
                         ]
                     },
                     {
-                        "description": "Move arrow keys work as VIM",
+                        "description": "Move arrow key to VIM",
                         "manipulators": [
                             {
                                 "from": {
@@ -245,10 +272,13 @@
                             "to": [{ "key_code": "left_command" }]
                         },
                         {
+                            <<<<<<< HEAD
                             "from": { "key_code": "right_option" },
                             "to": [{ "key_code": "f18" }]
                         },
                         {
+                            =======
+                            >>>>>>> a72c053 (feater company)
                             "from": { "key_code": "right_command" },
                             "to": [{ "key_code": "f18" }]
                         }
@@ -285,33 +315,6 @@
                 },
                 {
                     "identifiers": { "is_keyboard": true },
-                    "simple_modifications": [
-                        {
-                            "from": { "key_code": "caps_lock" },
-                            "to": [{ "key_code": "left_command" }]
-                        },
-                        {
-                            "from": { "key_code": "left_command" },
-                            "to": [{ "key_code": "left_control" }]
-                        },
-                        {
-                            "from": { "key_code": "right_command" },
-                            "to": [{ "key_code": "f18" }]
-                        },
-                        {
-                            "from": { "key_code": "right_option" },
-                            "to": [{ "key_code": "f18" }]
-                        }
-                    ]
-                },
-                {
-                    "identifiers": {
-                        "is_keyboard": true,
-                        "is_pointing_device": true,
-                        "product_id": 16403,
-                        "vendor_id": 12625
-                    },
-                    "ignore": false,
                     "simple_modifications": [
                         {
                             "from": { "key_code": "caps_lock" },
