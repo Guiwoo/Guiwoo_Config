@@ -25,7 +25,11 @@ split-divider-color = #b76ba3
 quick-terminal-position = center
 
 # font
-font-family = "CascadiaCode" 
+#font-family = CaskaydiaCoveNerdFont
+#font-synthetic-style = italic
+font-family = CaskaydiaCove Nerd Font Mono
+font-size = 13
+font-synthetic-style = bold-italic
 
 # cursor
 cursor-color = #FFC107
