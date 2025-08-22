@@ -11,7 +11,7 @@ return {
                     light = "lotus",
                 },
             })
-            vim.cmd("colorscheme kanagawa")
+            --vim.cmd("colorscheme kanagawa")
             vim.api.nvim_set_hl(0, "Visual", { bg = "#f5e0b8", fg = "#3c3836" })
         end,
         build = function()
@@ -21,11 +21,23 @@ return {
     {
         "catppuccin/nvim",
         name = "catppuccin",
-        priority = 1000,
+        priority = 1003,
     },
     {
         "olimorris/onedarkpro.nvim",
         name = "onedark",
-        priority = 999,
+        priority = 1002,
     },
+    {
+        "folke/tokyonight.nvim",
+        lazy = false,
+        priority = 1001,
+        opts={
+            style = "moon",
+        },
+        config = function(_, opts)
+            require("tokyonight").setup(opts)
+            vim.cmd.colorscheme("tokyonight")
+        end,
+    }
 }
