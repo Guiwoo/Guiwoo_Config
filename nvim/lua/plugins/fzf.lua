@@ -71,6 +71,13 @@ return {
         require('fzf-lua').lgrip_curbuf()
       end,
       desc ="Find Existing Buffers"
+    },
+    {
+      "<leader>fs",
+      function()
+        require('fzf-lua').lsp_document_symbols()
+      end,
+      desc ="Find Current Location File Method, Function, Type, Variables"
     }
 
   },
