@@ -12,22 +12,24 @@ fi
 
 # 설치할 패키지 목록
 PACKAGES=(
-zsh
 devel
-tmux
+zsh
 vim
+neovim
+tmux
+zoxide
+bat
 tree-sitter
 readline
-zstd
-bat
 fzf-tab
+zstd
 graphviz
 yazi
-zoxide
 fzf
 ripgrep
-ghostty
 cargro
+ghostty 
+lazygit 
 )
 
 CASKS=(

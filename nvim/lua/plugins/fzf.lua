@@ -68,7 +68,7 @@ return {
     {
       "<leader>f/",
       function()
-        require('fzf-lua').lgrip_curbuf()
+        require('fzf-lua').lgrep_curbuf()
       end,
       desc ="Find Existing Buffers"
     },

@@ -73,9 +73,6 @@ return {
         map("grf", function ()
             vim.cmd('normal! <C-o>')
         end, "[G]o [f]orward previous position")
-
-        
-
         -- Jump to the implementation of the word under your cursor.
         --  Useful when your language has ways of declaring types without an actual implementation.
         map("gri", require("telescope.builtin").lsp_implementations, "[G]oto [I]mplementation")
@@ -218,6 +215,11 @@ return {
         on_attach = on_attach,
         cmd = { "gopls" },
         filetypes = { "go", "gomod", "gowork", "gotmpl" },
+      },
+      eslint = {
+        on_attach = on_attach,
+        cmd = {"eslint"},
+        filetypes = {"js"},
       },
       -- pyright = {},
       -- rust_analyzer = {},
