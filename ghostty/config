@@ -10,8 +10,6 @@ unfocused-split-opacity = 0.5
 # window
 window-padding-color = background
 window-padding-balance = true
-window-padding-x =15
-window-padding-y = 10
 window-subtitle = working-directory
 
 split-divider-color = #b76ba3
@@ -22,9 +20,9 @@ quick-terminal-position = center
 # font
 #font-family = CaskaydiaCoveNerdFont
 #font-synthetic-style = italic
-font-family = CaskaydiaCove Nerd Font Mono
+font-family = "CaskaydiaCove Nerd Font Mono"
 font-size = 13
-font-synthetic-style = bold-italic
+font-synthetic-style = "bold-italic"
 
 # cursor
 cursor-color = #FFC107

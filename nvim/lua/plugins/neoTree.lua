@@ -16,6 +16,6 @@ return {
 		},
 	},
 	keys = {
-		{ "<C-n>", ":Neotree filesystem reveal left<CR>", mode = "n", desc = "Neo-tree" },
+		{ "<C-n>", ":Neotree filesystem reveal left toggle<CR>", mode = "n", desc = "Neo-tree" },
 	},
 }
