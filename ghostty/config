@@ -1,6 +1,6 @@
 # pane
 background = 282c34
-background-opacity = 0.85
+background-opacity = 0.90
 foreground = ffffff
 
 #focus
@@ -21,8 +21,8 @@ quick-terminal-position = center
 #font-family = CaskaydiaCoveNerdFont
 #font-synthetic-style = italic
 font-family = "CaskaydiaCove Nerd Font Mono"
-font-size = 13
 font-synthetic-style = "bold-italic"
+font-size = 13
 
 # cursor
 cursor-color = #FFC107

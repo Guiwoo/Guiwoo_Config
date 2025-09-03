@@ -11,7 +11,7 @@ return {
                     light = "lotus",
                 },
             })
-            --vim.cmd("colorscheme kanagawa")
+            vim.cmd("colorscheme kanagawa-dragon")
             vim.api.nvim_set_hl(0, "Visual", { bg = "#f5e0b8", fg = "#3c3836" })
         end,
         build = function()
@@ -36,8 +36,8 @@ return {
             style = "moon",
         },
         config = function(_, opts)
-            require("tokyonight").setup(opts)
-            vim.cmd.colorscheme("tokyonight")
+            opts.transparent = true
+            -- vim.cmd.colorscheme("tokyonight")
         end,
     }
 }

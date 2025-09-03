@@ -21,3 +21,5 @@ vim.opt.splitbelow = true
 vim.opt.cursorline = true
 
 vim.opt.syntax = on
+
+vim.opt.swapfile = false
