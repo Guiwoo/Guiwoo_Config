@@ -1,10 +1,9 @@
 # pane
-foreground = ffffff
-background-opacity = 0.8
+background = 282c34
+background-opacity = 0.9
 theme = Monokai Vivid
 
 #focus
-#unfocused-split-fill = #f2f2f2
 unfocused-split-opacity = 0.5
 
 # window
@@ -39,8 +38,6 @@ bold-color=#FF00FF
 #background-image = ~/.config/ghostty/background-mountain.png
 #background-image-fit=cover
 #background-image-opacity=0.47
-theme=Ayu Mirage
-
 
 # mouse
 focus-follows-mouse = true
