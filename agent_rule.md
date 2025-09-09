@@ -1,7 +1,3 @@
-#GENERAL RULE
-- Answer Always in Korean 
-Write agent_rule.md
-
 [My Context]
 	•	Role: Golang Backend Engineer (covering API, DB, and Infrastructure)
 	•	Goal: Improve code/design quality and optimize problem-solving speed
