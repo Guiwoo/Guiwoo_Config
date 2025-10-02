@@ -23,3 +23,8 @@ vim.opt.cursorline = true
 vim.opt.syntax = on
 
 vim.opt.swapfile = false
+
+vim.opt.foldmethod = "indent"
+vim.opt.foldlevel = 99
+
+

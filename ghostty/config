@@ -1,6 +1,5 @@
 # pane
 background = 282c34
-background-opacity = 0.90
 foreground = ffffff
 
 #focus
@@ -20,32 +19,40 @@ quick-terminal-position = center
 # font
 #font-family = CaskaydiaCoveNerdFont
 #font-synthetic-style = italic
-font-family = "CaskaydiaCove Nerd Font Mono"
-font-synthetic-style = "bold-italic"
-font-size = 13
+font-family="CaskaydiaCove Nerd Font Mono"
+font-synthetic-style="bold-italic"
+font-size=14
 
 # cursor
 cursor-color = #FFC107
 cursor-click-to-move = true
 
-bold-is-bright=true
+# bold
+bold-color=#FF00FF
+
+# cool
+background-image = ~/.config/ghostty/background-mountain.png
+background-image-fit=cover
+background-image-opacity=0.47
 
 # mouse
 focus-follows-mouse = true
 
 # quick terminal
 quick-terminal-position=center
+quick-terminal-size=80%,80%
 keybind = ctrl+o>c=toggle_quick_terminal
 
 # copy
-copy-on-select = clipboard
+copy-on-select = true
 clipboard-write=allow
+clipboard-trim-trailing-spaces=true
 
-# keybind
-keybind = ctrl+o>u=resize_split:up,10
-keybind = ctrl+o>d=resize_split:down,10
-keybind = ctrl+o>l=resize_split:left,10
-keybind = ctrl+o>r=resize_split:right,10
+# keybinu
+keybind = super+shift+u=resize_split:up,50
+keybind = super+shift+d=resize_split:down,50
+keybind = super+shift+l=resize_split:left,50
+keybind = super+shift+r=resize_split:right,50
 
 keybind = ctrl+o>x=close_surface
 keybind = ctrl+o>v=new_split:right

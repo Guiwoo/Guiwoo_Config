@@ -1,4 +1,5 @@
 return {
+  --[[
 	"ggandor/leap.nvim",
 	keys = { "s", "S", "gs" },
 	config = function()
@@ -14,4 +15,5 @@ return {
 
 		vim.api.nvim_set_hl(0, "LeapBackdrop", { link = "Comment" })
 	end,
+  ]]--
 }

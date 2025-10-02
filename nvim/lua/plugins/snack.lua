@@ -19,7 +19,7 @@ return {
 				{ section = "startup" },
 				{
 					section = "terminal",
-					cmd = "/usr/local/bin/pokemon-colorscripts -r -s -b --no-title; sleep .1",
+					cmd = "/usr/local/bin/pokemon-colorscripts -r -s --no-title; sleep .1",
 					random = 10,
 					pane = 2,
 					indent = 4,
