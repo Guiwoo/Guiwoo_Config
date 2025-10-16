@@ -1,0 +1,80 @@
+#!/bin/zsh
+
+# Git branch cleanup function for removing local branches deleted from remote
+git-cleanup() {
+    local force=false
+    local help=false
+
+    # 옵션 파싱
+    while [[ $# -gt 0 ]]; do
+        case $1 in
+            -f|--force)
+                force=true
+                shift
+                ;;
+            -h|--help)
+                help=true
+                shift
+                ;;
+            *)
+                echo "Unknown option: $1"
+                help=true
+                break
+                ;;
+        esac
+    done
+
+    # Show help
+    if [[ $help == true ]]; then
+        echo "Usage: git-cleanup [options]"
+        echo ""
+        echo "Clean up local branches that have been deleted from remote."
+        echo ""
+        echo "Options:"
+        echo "  -f, --force    Force delete (even if not merged)"
+        echo "  -h, --help     Show this help message"
+        echo ""
+        echo "Examples:"
+        echo "  git-cleanup           # Safe delete (merged branches only)"
+        echo "  git-cleanup --force   # Force delete (all gone branches)"
+        return 0
+    fi
+
+    # Check if we're in a git repository
+    if ! git rev-parse --git-dir > /dev/null 2>&1; then
+        echo "Error: Not a git repository."
+        return 1
+    fi
+
+    echo "Updating remote branch information..."
+    git remote prune origin
+
+    # Find gone branches
+    local gone_branches=($(git branch -vv | grep ': gone]' | awk '{print $1}'))
+
+    if [[ ${#gone_branches[@]} -eq 0 ]]; then
+        echo "No branches to clean up."
+        return 0
+    fi
+
+    echo "Branches to delete:"
+    printf "  %s\n" "${gone_branches[@]}"
+    echo ""
+
+    # Execute deletion
+    if [[ $force == true ]]; then
+        echo "Running in force delete mode..."
+        printf "%s\n" "${gone_branches[@]}" | xargs -r git branch -D
+    else
+        echo "Running in safe delete mode..."
+        printf "%s\n" "${gone_branches[@]}" | xargs -r git branch -d
+    fi
+
+    if [[ $? -eq 0 ]]; then
+        echo "Branch cleanup completed."
+    else
+        echo "Error: Some branches could not be deleted."
+        echo "Hint: Use --force option if there are unmerged changes."
+        return 1
+    fi
+}
