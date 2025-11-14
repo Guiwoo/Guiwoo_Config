@@ -32,8 +32,23 @@ return {
 		picker = { enabled = true },
 		notifier = { enabled = true },
 		scope = { enabled = true },
-		statuscolumn = { enabled = true },
+		statuscolumn = {
+      enabled = true ,
+      left = { "mark","sign" },
+      right = { "fold", "git" },
+      folds = {
+        open = false,
+        git_hl = true
+      },
+      git = {
+        patterns = { "GitSign", "MinDiffSign" }
+      },
+      refresh = 100,
+    },
 		words = { enabled = true },
 		command = { enabled = true },
+    animate = {
+      enabled = true,
+    }
 	},
 }

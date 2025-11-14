@@ -1,5 +1,6 @@
 # pane
-background = 282c34
+#background = 282c34
+background-opacity = 0.85
 foreground = ffffff
 
 #focus
@@ -31,9 +32,11 @@ cursor-click-to-move = true
 bold-color=#FF00FF
 
 # cool
-background-image = ~/.config/ghostty/background-mountain.png
-background-image-fit=cover
-background-image-opacity=0.47
+#background-image = ~/.config/ghostty/background-mountain.png
+#background-image-fit=cover
+#background-image-opacity=0.47
+theme=Ayu Mirage
+
 
 # mouse
 focus-follows-mouse = true

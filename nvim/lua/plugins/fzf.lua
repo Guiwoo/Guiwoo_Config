@@ -5,7 +5,9 @@ return {
 		{
 			"<leader>ff",
 			function()
-				require("fzf-lua").files()
+				require("fzf-lua").files({
+					fd_opts = "--hidden -I --exclude .git",
+				})
 			end,
 			desc = "Find Files in Project directory",
 		},
@@ -87,5 +89,10 @@ return {
 			desc = "Grep Search Visual Selection",
 		},
 	},
-	opts = {},
+	opts = {
+		picker = {
+			hidden = true, -- Set to true to always include hidden files
+			no_ignore = true, -- Set to true to not use .gitignore
+		},
+	},
 }

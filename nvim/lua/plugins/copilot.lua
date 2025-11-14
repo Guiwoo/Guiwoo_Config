@@ -8,6 +8,7 @@ return {
 			vim.g.copilot_assume_mapped = true
 			vim.g.copilot_tab_fallback = ""
 
+			-- Copilot Toggle Key Mapping
 			vim.keymap.set(
 				"i",
 				"<right>",
@@ -15,13 +16,29 @@ return {
 				{ expr = true, silent = true, replace_keycodes = false, desc = "Accept Copilot suggestion" }
 			)
 			-- or run <leader>ch to see copilot mapping section
+			local name = "copilot.vim"
+			vim.g.copilot_active = vim.g.copilot_active or false
+
 			vim.keymap.set("n", "<leader>ce", function()
-				local name = "copilot.vim"
-				require("lazy").enable(name)
-				require("lazy").load({ plugins = { name } })
-				vim.cmd("Copilot enable")
-				vim.notify("Copilot enabled")
-			end, { desc = "Enable Copilot (load plugin)" })
+				if vim.g.copilot_active then
+					pcall(vim.cmd, "Copilot disable")
+					if ok_lazy and lazy and type(lazy.disable) == "function" then
+						pcall(lazy.disable, "copilot.vim")
+					end
+					vim.g.copilot_active = false
+					vim.notify("Copilot disabled")
+				else
+					if ok_lazy and lazy and type(lazy.enable) == "function" then
+						pcall(lazy.enable, "copilot.vim")
+						if type(lazy.load) == "function" then
+							pcall(lazy.load, { plugins = { "copilot.vim" } })
+						end
+					end
+					pcall(vim.cmd, "Copilot enable")
+					vim.g.copilot_active = true
+					vim.notify("Copilot enabled")
+				end
+			end, { desc = "Toggle Copilot (safe lazy usage)" })
 		end,
 	},
 }
