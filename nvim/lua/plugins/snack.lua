@@ -29,7 +29,6 @@ return {
 		},
 		indent = { enabled = true },
 		input = { enabled = true },
-		picker = { enabled = true },
 		notifier = { enabled = true },
 		scope = { enabled = true },
 		statuscolumn = {

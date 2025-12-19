@@ -8,7 +8,7 @@ return {
 	},
 	opts = {
 		filesystem = {
-			filtered_tiems = {
+			filtered_items = {
 				visible = true,
 				show_hidden_count = true,
 				hide_dotfiles = true,
@@ -16,6 +16,6 @@ return {
 		},
 	},
 	keys = {
-		{ "<C-n>", ":Neotree filesystem reveal left toggle<CR>", mode = "n", desc = "Neo-tree" },
+		{ "<leader>tt", ":Neotree filesystem reveal left toggle<CR>", mode = "n", desc = "Neo-tree" },
 	},
 }

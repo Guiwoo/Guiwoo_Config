@@ -12,12 +12,12 @@ return {
 			vim.keymap.set(
 				"i",
 				"<right>",
-				'copilot#Accept(" < CR > ")',
+        'copilot#Accept(" < CR > ")',
 				{ expr = true, silent = true, replace_keycodes = false, desc = "Accept Copilot suggestion" }
 			)
 			-- or run <leader>ch to see copilot mapping section
 			local name = "copilot.vim"
-			vim.g.copilot_active = vim.g.copilot_active or false
+			vim.g.copilot_active = true
 
 			vim.keymap.set("n", "<leader>ce", function()
 				if vim.g.copilot_active then

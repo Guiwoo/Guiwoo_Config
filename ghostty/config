@@ -1,7 +1,7 @@
 # pane
-#background = 282c34
-background-opacity = 0.85
 foreground = ffffff
+background-opacity = 0.8
+theme = Monokai Vivid
 
 #focus
 #unfocused-split-fill = #f2f2f2
@@ -11,6 +11,10 @@ unfocused-split-opacity = 0.5
 window-padding-color = background
 window-padding-balance = true
 window-subtitle = working-directory
+window-width = 284
+window-height = 79
+
+scrollback-limit = 2147483648
 
 split-divider-color = #b76ba3
 

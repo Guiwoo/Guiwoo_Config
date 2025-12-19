@@ -11,8 +11,8 @@ return {
                     light = "lotus",
                 },
             })
-            vim.cmd("colorscheme kanagawa-dragon")
-            vim.api.nvim_set_hl(0, "Visual", { bg = "#f5e0b8", fg = "#3c3836" })
+            vim.cmd("colorscheme kanagawa-wave")
+            vim.api.nvim_set_hl(0, "Visual", { bg = "#fe8019", fg = "#3c3836" })
         end,
         build = function()
             vim.cmd("KanagawaCompile")
