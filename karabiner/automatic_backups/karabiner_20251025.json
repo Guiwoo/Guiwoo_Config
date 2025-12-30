@@ -223,100 +223,52 @@
             },
             "devices": [
                 {
-                    "identifiers": {
-                        "is_keyboard": true,
-                        "product_id": 835,
-                        "vendor_id": 1452
-                    },
+                    "identifiers": { "is_keyboard": true, "product_id": 835, "vendor_id": 1452 },
                     "simple_modifications": [
-                        {
-                            "from": { "key_code": "caps_lock" },
-                            "to": [{ "key_code": "left_command" }]
-                        },
-                        {
-                            "from": { "key_code": "left_command" },
-                            "to": [{ "key_code": "left_control" }]
-                        }
+                        { "from": { "key_code": "caps_lock" }, "to": [{ "key_code": "left_command" }] },
+                        { "from": { "key_code": "left_command" }, "to": [{ "key_code": "left_control" }] }
                     ]
                 },
                 {
-                    "identifiers": {
-                        "is_keyboard": true,
-                        "product_id": 256,
-                        "vendor_id": 2131
-                    },
+                    "identifiers": { "is_keyboard": true, "product_id": 256, "vendor_id": 2131 },
                     "simple_modifications": [
-                        {
-                            "from": { "key_code": "left_command" },
-                            "to": [{ "key_code": "left_control" }]
-                        },
-                        {
-                            "from": { "key_code": "left_control" },
-                            "to": [{ "key_code": "left_command" }]
-                        }
+                        { "from": { "key_code": "left_command" }, "to": [{ "key_code": "left_control" }] },
+                        { "from": { "key_code": "left_control" }, "to": [{ "key_code": "left_command" }] }
                     ]
                 },
                 {
-                    "identifiers": {
-                        "is_keyboard": true,
-                        "product_id": 33,
-                        "vendor_id": 1278
-                    },
+                    "identifiers": { "is_keyboard": true, "product_id": 33, "vendor_id": 1278 },
                     "simple_modifications": [
-                        {
-                            "from": { "key_code": "left_command" },
-                            "to": [{ "key_code": "left_control" }]
-                        },
-                        {
-                            "from": { "key_code": "left_control" },
-                            "to": [{ "key_code": "left_command" }]
-                        },
-                        {
-                            "from": { "key_code": "right_command" },
-                            "to": [{ "key_code": "f18" }]
-                        },
-                        {
-                            "from": { "key_code": "right_option" },
-                            "to": [{ "key_code": "f18" }]
-                        }
+                        { "from": { "key_code": "left_command" }, "to": [{ "key_code": "left_control" }] },
+                        { "from": { "key_code": "left_control" }, "to": [{ "key_code": "left_command" }] },
+                        { "from": { "key_code": "right_option" }, "to": [{ "key_code": "f18" }] },
+                        { "from": { "key_code": "right_command" }, "to": [{ "key_code": "f18" }] }
                     ]
                 },
                 {
                     "fn_function_keys": [
-                        {
-                            "from": { "key_code": "f1" },
-                            "to": [{ "apple_vendor_keyboard_key_code": "mission_control" }]
-                        }
+                        { "from": { "key_code": "f1" }, "to": [{ "apple_vendor_keyboard_key_code": "mission_control" }] }
                     ],
-                    "identifiers": {
-                        "is_keyboard": true,
-                        "is_pointing_device": true,
-                        "product_id": 33398,
-                        "vendor_id": 9306
-                    },
+                    "identifiers": { "is_keyboard": true, "is_pointing_device": true, "product_id": 33398, "vendor_id": 9306 },
                     "ignore": false,
                     "simple_modifications": [
-                        {
-                            "from": { "key_code": "caps_lock" },
-                            "to": [{ "key_code": "left_command" }]
-                        },
-                        {
-                            "from": { "key_code": "left_command" },
-                            "to": [{ "key_code": "left_control" }]
-                        },
-                        {
-                            "from": { "key_code": "right_option" },
-                            "to": [{ "key_code": "f18" }]
-                        }
+                        { "from": { "key_code": "caps_lock" }, "to": [{ "key_code": "left_command" }] },
+                        { "from": { "key_code": "left_command" }, "to": [{ "key_code": "left_control" }] },
+                        { "from": { "key_code": "right_option" }, "to": [{ "key_code": "f18" }] }
                     ]
                 },
                 {
-                    "identifiers": {
-                        "is_keyboard": true,
-                        "is_pointing_device": true,
-                        "product_id": 16403,
-                        "vendor_id": 12625
-                    },
+                    "identifiers": { "is_keyboard": true },
+                    "ignore": false,
+                    "simple_modifications": [
+                        { "from": { "key_code": "caps_lock" }, "to": [{ "key_code": "left_command" }] },
+                        { "from": { "key_code": "left_command" }, "to": [{ "key_code": "left_control" }] },
+                        { "from": { "key_code": "right_command" }, "to": [{ "key_code": "f18" }] },
+                        { "from": { "key_code": "right_option" }, "to": [{ "key_code": "f18" }] }
+                    ]
+                },
+                {
+                    "identifiers": { "is_keyboard": true, "is_pointing_device": true, "product_id": 16403, "vendor_id": 12625 },
                     "ignore": false
                 }
             ],
