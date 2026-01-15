@@ -13,7 +13,7 @@ return {
 	-- Lazy loading is not recommended because it is very tricky to make it work correctly in all situations.
 	lazy = false,
 	keys = {
-		{ "<C-m>", "<cmd>Oil --float<cr>", desc = "Oil Float screen on the boobs" },
+		{ "<leader>ol", "<cmd>Oil --float<cr>", desc = "Oil Float screen on the boobs" },
 		{
 			"<Esc>",
 			function()

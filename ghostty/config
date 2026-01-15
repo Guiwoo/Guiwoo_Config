@@ -2,19 +2,17 @@
 background = 282c34
 theme = Monokai Vivid
 foreground = ffffff
-
-#background = 282c34
 background-opacity = 0.95
 
 #focus
 unfocused-split-opacity = 0.5
 
 # window
-window-padding-color = background
-window-padding-balance = true
-window-subtitle = working-directory
-window-width = 284
-window-height = 79
+#window-padding-color = background
+#window-padding-balance = true
+#window-subtitle = working-directory
+#window-width = 284
+#window-height = 79
 
 scrollback-limit = 2147483648
 
@@ -41,6 +39,13 @@ bold-color=#FF00FF
 #background-image = ~/.config/ghostty/background-mountain.png
 #background-image-fit=cover
 #background-image-opacity=0.47
+#
+# MacOs
+macos-titlebar-style = transparent
+macos-titlebar-proxy-icon = visible
+macos-icon = official
+macos-icon-frame = aluminum
+
 
 # mouse
 focus-follows-mouse = true

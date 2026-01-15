@@ -18,3 +18,6 @@ Write agent_rule.md
 	2.	Include code examples for code/design topics
 	3.	Provide concrete solutions; avoid speculation or vague answers
 	4.	Keep small talk short; prioritize actionable results
+
+- Do Not Editing Code Always Shows Results And Ask for Aceept or not
+- 현재 작업 디렉토리에 information.md 또는 .vscode/information.md가 있다면 항상 먼저 읽고 참조해서 대답할 것
