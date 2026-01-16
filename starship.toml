@@ -133,7 +133,7 @@ format = '[─](fg:current_line)[](fg:red)[$symbol](fg:primary bg:red)[](f
 symbol = ' Java'
 
 [golang]
-format = '[─](fg:current_line)[](fg:gocolor)[$symbol](fg:primary bg:goColor)[](fg:goColor bg:box)[ $version](fg:foreground bg:box)[](fg:box)'
+format = '[─](fg:current_line)[](fg:gocolor)[$symbol](fg:#ffffff bg:goColor)[](fg:goColor bg:box)[ $version](fg:foreground bg:box)[](fg:box)'
 symbol = ' Go'
 
 [c]
