@@ -1,7 +1,7 @@
 "$schema" = 'https://starship.rs/config-schema.json'
 
 format = """
-[╭](fg:current_line)\
+[-](fg:current_line)\
 $os\
 $status\
 $directory\
@@ -65,7 +65,7 @@ yellow = '#E5C07B'
 status = "#e23140"
 
 [os]
-format = '(fg:current_line)[](fg:red)[](fg:primary bg:red)[](fg:red)'
+format = '(fg:current_line)[](fg:#9a348e)[󰀵](fg:#ffffff bg:#9a348e)[](fg:#9a348e)'
 disabled = false
 
 [status]
@@ -77,7 +77,7 @@ pipestatus_format = "[─](fg:current_line)[](fg:status)[](fg:primary bg:s
 disabled = false
 
 [directory]
-format = '[─](fg:current_line)[](fg:pink)[󰷏](fg:primary bg:pink)[](fg:pink bg:box)[ $read_only$truncation_symbol$path](fg:foreground bg:box)[](fg:box)'
+format = '[─](fg:current_line)[](fg:#DA627D)[󰷏](fg:#ffffff bg:#DA627D)[](fg:#DA627D bg:#DA627D)[$read_only$truncation_symbol$path](fg:#ffffff bg:#DA627D)[](fg:#DA627D)'
 home_symbol = " ~/"
 truncation_symbol = ' '
 truncation_length = 2
@@ -85,10 +85,10 @@ read_only = '󱧵 '
 read_only_style = ''
 
 [git_branch]
-format = '[─](fg:current_line)[](fg:green)[$symbol](fg:primary bg:green)[](fg:green bg:box)[ $branch](fg:foreground bg:box)'
+format = '[─](fg:current_line)[](fg:#FCA17D)[$symbol](fg:#ffffff bg:#FCA17D)[](fg:#FCA17D bg:#FCA17D)[$branch](fg:foreground bg:#FCA17D)[](fg:#FCA17D)'
 #truncation_length = 8
-truncation_symbol = ''
-symbol = ''
+#truncation_symbol = '--'
+symbol = ""
 
 [git_status]
 format = '[$all_status](fg:green bg:box)[](fg:box)'
@@ -134,7 +134,7 @@ symbol = ' Java'
 
 [golang]
 format = '[─](fg:current_line)[](fg:gocolor)[$symbol](fg:primary bg:goColor)[](fg:goColor bg:box)[ $version](fg:foreground bg:box)[](fg:box)'
-symbol = '🐭 Go'
+symbol = ' Go'
 
 [c]
 format = '[─](fg:current_line)[](fg:blue)[$symbol](fg:primary bg:blue)[](fg:blue bg:box)[ $version](fg:foreground bg:box)[](fg:box)'
