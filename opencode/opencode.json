@@ -1,5 +1,10 @@
 {
   "$schema": "https://opencode.ai/config.json",
   "instructions": ["CONTRIBUTING.md", "docs/guidelines.md", ".cursor/rules/*.md"],
-  "lsp": {}
+  "keybinds" : {
+    "leader": "ctrl+p",
+    "session_exoprt": "<leader>e",
+    "message_next" : "<leader>n",
+    "message_previous" : "<leader>N"
+  }
 }
