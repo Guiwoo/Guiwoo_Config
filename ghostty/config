@@ -1,12 +1,10 @@
 # pane
 background = 282c34
-background-opacity = 0.9
 theme = Monokai Vivid
 foreground = ffffff
 
 #background = 282c34
-background-opacity = 0.9
-theme = Monokai Vivid
+background-opacity = 0.95
 
 #focus
 unfocused-split-opacity = 0.5

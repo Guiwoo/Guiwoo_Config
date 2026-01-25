@@ -90,9 +90,24 @@ return {
 		},
 	},
 	opts = {
-		picker = {
-			hidden = true, -- Set to true to always include hidden files
-			no_ignore = true, -- Set to true to not use .gitignore
-		},
+		picker = { hidden = true, no_ignore = true},
+    keymap = {
+      builtin = {
+      ["<C-n>"] = "down",
+      ["<C-p>"] = "up",
+      ["<C-f>"] = "preview-page-down",
+      ["<C-b>"] = "preview-page-up",
+      ["<Tab>"] = "toggle-down",
+      ["<S-Tab>"] = "toggle-up",
+    },
+    fzf = {
+      ["ctrl-n"] = "down",
+      ["ctrl-p"] = "up",
+      ["ctrl-f"] = "preview-page-down",
+      ["ctrl-b"] = "preview-page-up",
+      ["tab"] = "toggle-down",
+      ["btab"] = "toggle-up",
+    },
+    }
 	},
 }
