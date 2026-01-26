@@ -1,8 +1,8 @@
 # pane
 background = 282c34
-theme = Monokai Vivid
+theme = Monokai Pro Octagon
 foreground = ffffff
-background-opacity = 0.95
+background-opacity = 0.98
 
 #focus
 unfocused-split-opacity = 0.5
@@ -13,6 +13,9 @@ unfocused-split-opacity = 0.5
 #window-subtitle = working-directory
 #window-width = 284
 #window-height = 79
+
+#window-titlebar-background = #c3e8c8
+#window-titlebar-foreground = #FFFFFF
 
 scrollback-limit = 2147483648
 
@@ -33,7 +36,7 @@ cursor-color = #FFC107
 cursor-click-to-move = true
 
 # bold
-bold-color=#FF00FF
+#bold-color=#FF00FF
 
 # cool
 #background-image = ~/.config/ghostty/background-mountain.png
