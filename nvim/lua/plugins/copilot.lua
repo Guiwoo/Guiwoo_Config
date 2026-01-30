@@ -1,4 +1,4 @@
-return { -- 별도의 플러그인 설정으로 분리하거나, avante 의존성 설정에 추가
+return {
   --[[
 	{
 		"zbirenbaum/copilot.lua",

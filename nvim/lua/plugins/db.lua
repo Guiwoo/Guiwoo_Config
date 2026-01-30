@@ -1,6 +1,7 @@
 -- Database Plugins
 -- DB 관련 플러그인
 return {
+  --[[
 	{
 		"kristijanhusak/vim-dadbod-ui",
 		dependencies = {
@@ -251,4 +252,5 @@ return {
 			vim.g.completion_matching_ignore_case = 1
 		end,
 	},
+  ]]--
 }

@@ -47,7 +47,7 @@ return {
 			desc = "Find buildin fzf",
 		},
 		{
-			"<leader>fw",
+			"<leader>fww",
 			function()
 				require("fzf-lua").grep_cword()
 			end,
@@ -82,7 +82,7 @@ return {
 			desc = "Find Current Location File Method, Function, Type, Variables",
 		},
 		{
-			"<leader>fwv",
+			"<leader>fw",
 			function()
 				require("fzf-lua").grep_visual()
 			end,
