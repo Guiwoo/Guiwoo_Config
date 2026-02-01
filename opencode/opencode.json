@@ -1,9 +1,10 @@
 {
   "$schema": "https://opencode.ai/config.json",
+  "plugin": ["opencode-gemini-auth@latest"],
   "instructions": ["CONTRIBUTING.md", "docs/guidelines.md", ".cursor/rules/*.md"],
   "keybinds" : {
     "leader": "ctrl+p",
-    "messages_copy": "<leader>y"
+    "messages_copy": "<leader>y",
     "session_export": "<leader>e",
     "messages_next": "<leader>n",
     "messages_previous": "<leader>N"  
