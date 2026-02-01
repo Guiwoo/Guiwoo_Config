@@ -3,8 +3,9 @@
   "instructions": ["CONTRIBUTING.md", "docs/guidelines.md", ".cursor/rules/*.md"],
   "keybinds" : {
     "leader": "ctrl+p",
-    "messages_next": "<leader>n",
-    "messages_previous": "<leader>N",
     "messages_copy": "<leader>y"
+    "session_export": "<leader>e",
+    "messages_next": "<leader>n",
+    "messages_previous": "<leader>N"  
   }
 }

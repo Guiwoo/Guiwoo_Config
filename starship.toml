@@ -26,10 +26,14 @@ $line_break\
 $character\
 """
 
-palette = 'catppuccin_mocha'
+palette = 'guiwoo'
 add_newline = true
 
-[palettes.catppuccin_mocha]
+[palettes.guiwoo]
+white = '#C4CFC7'
+rainbox_red = '#F8C8DC'
+rainbox_orange= "#FFD8A1"
+
 foreground = '#D9E0EE'
 background = '#1E1E2E'
 current_line = '#2E2E3E'
@@ -48,32 +52,16 @@ aqua = "#FF00FF"
 ivory = "#FFFFF0"
 gocolor = "#61AFEF"
 
-[palettes.tokyo_night]
-foreground = '#D8D8D8'
-background = '#1A1B26'
-current_line = '#2A2C37'
-primary = '#292E42'
-box = '#2A2C37'
-blue = '#7AA2F7'
-cyan = '#7FDBCA'
-green = '#98C379'
-orange = '#FF9E64'
-pink = '#FF75A0'
-purple = '#BB80B3'
-red = '#F7768E'
-yellow = '#E5C07B'
-status = "#e23140"
-
 [os]
 format = '(fg:current_line)[](fg:#9a348e)[󰀵](fg:#ffffff bg:#9a348e)[](fg:#9a348e)'
 disabled = false
 
 [status]
-format = "[─](fg:current_line)[](fg:status)[](fg:primary bg:status)[](fg:status bg:box)[ $status](fg:foreground bg:box)[](fg:box)"
+format = "[─](fg:current_line)[](fg:rainbox_orange)[](fg:primary bg:rainbox_orange)[](fg:rainbox_orange bg:rainbox_orange)[ $status](fg:rainbox_orange bg:rainbox_orange)[](fg:rainbox_orange)"
 pipestatus = true
 pipestatus_separator = "-"
 pipestatus_segment_format = "$status"
-pipestatus_format = "[─](fg:current_line)[](fg:status)[](fg:primary bg:status)[](fg:status bg:box)[ $pipestatus](fg:foreground bg:box)[](fg:box)"
+pipestatus_format = "[─](fg:rainbox_orange)[](fg:rainbox_orange)[](fg:primary bg:rainbox_orange)[](fg:rainbox_orange bg:rainbox_orange)[ $pipestatus](fg:rainbox_orange bg:rainbox_orange)[](fg:rainbox_orange)"
 disabled = false
 
 [directory]
