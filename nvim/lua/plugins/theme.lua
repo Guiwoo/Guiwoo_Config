@@ -38,9 +38,36 @@ return {
 			transparent = true,
 		},
 		config = function(_, opts)
-			require("tokyonight").setup(opts)
-			vim.cmd.colorscheme("tokyonight")
+			--require("tokyonight").setup(opts)
+			--vim.cmd.colorscheme("tokyonight")
+			--vim.api.nvim_set_hl(0, "Visual", { bg = "#fe8019", fg = "#3c3836" })
+		end,
+	},
+	{
+		"EdenEast/nightfox.nvim",
+		lazy = false,
+		opts = {
+			styles = {
+				comments = "italic",
+				keywords = "bold",
+				types = "italic,bold",
+			},
+		},
+		config = function(_, opts)
+			require("nightfox").setup(opts)
+			vim.cmd.colorscheme("dayfox")
+
 			vim.api.nvim_set_hl(0, "Visual", { bg = "#fe8019", fg = "#3c3836" })
+			vim.api.nvim_create_autocmd("InsertEnter", {
+				callback = function()
+					vim.api.nvim_set_hl(0, "Cursor", { bg = "#2C3E5D", fg = "#FFFFFF" })
+				end,
+			})
+			vim.api.nvim_create_autocmd("InsertLeave", {
+				callback = function()
+					vim.api.nvim_set_hl(0, "Cursor", { bg = "#1F2430", fg = "#FFFFFF" })
+				end,
+			})
 		end,
 	},
 }

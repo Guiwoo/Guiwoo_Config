@@ -1,8 +1,8 @@
 # pane
-background = 282c34
-theme = Gruvbox Material
-foreground = ffffff
-background-opacity = 0.87777777
+#background = 282c34
+theme = Dayfox
+#foreground = ffffff
+background-opacity = 1
 
 #focus
 unfocused-split-opacity = 0.7
@@ -32,8 +32,14 @@ font-synthetic-style="bold-italic"
 font-size=13
 
 # cursor
-cursor-color = #FFC107
+cursor-color = #2C3E5D
 cursor-click-to-move = true
+cursor-style = block
+cursor-style-blink = true
+
+adjust-cell-width = 8%
+adjust-cursor-thickness = 20%
+
 
 # bold
 #bold-color=#FF00FF
