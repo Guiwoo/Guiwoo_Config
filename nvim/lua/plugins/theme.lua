@@ -1,8 +1,7 @@
 return {
 	{
 		"rebelot/kanagawa.nvim",
-		lazy = true,
-		priority = 1001,
+    lazy = true,
 		config = function()
 			require("kanagawa").setup({
 				compile = true,
@@ -13,7 +12,7 @@ return {
 					light = "lotus",
 				},
 			})
-			--vim.cmd("colorscheme kanagawa-wave")
+			--vim.cmd("colorscheme kanagawa-dragon")
 			--vim.api.nvim_set_hl(0, "Visual", { bg = "#fe8019", fg = "#3c3836" })
 		end,
 		build = function()
@@ -23,7 +22,14 @@ return {
 	{
 		"catppuccin/nvim",
 		name = "catppuccin",
-		priority = 1003,
+    opts = {
+      flavor = "frappe"
+    },
+    config = function (_, opts)
+      --require("catppuccin").setup(opts)
+      --vim.cmd.colorscheme("catppuccin-frappe")
+			--vim.api.nvim_set_hl(0, "Visual", { bg = "#fe8019", fg = "#3c3836" })
+    end,
 	},
 	{
 		"olimorris/onedarkpro.nvim",
@@ -32,9 +38,8 @@ return {
 	},
 	{
 		"folke/tokyonight.nvim",
-		lazy = false,
 		opts = {
-			style = "moon",
+			style = "storm",
 			transparent = true,
 		},
 		config = function(_, opts)
