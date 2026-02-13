@@ -1,0 +1,207 @@
+#!bin/sh
+
+# kubelog - kubectl log extraction function
+# Save this as ~/.config/zshfunctions/kubelog (no extension)
+
+# Color definitions
+local RED='\033[0;31m'
+local GREEN='\033[0;32m'
+local YELLOW='\033[1;33m'
+local BLUE='\033[0;34m'
+local NC='\033[0m' # No Color
+
+# Help function
+local show_help() {
+    echo "Usage: kubelog <namespace> [options]"
+    echo ""
+    echo "Options:"
+    echo "  -h, --help          Show this help message"
+    echo "  -f, --follow        Follow log output in real-time (first pod only)"
+    echo "  -o, --output <dir>  Log file output directory (default: current directory)"
+    echo "  -p, --pod <pattern> Extract logs from specific pods (pattern matching)"
+    echo "  --since <time>      Show logs since timestamp (e.g., 1h, 30m, 2006-01-02T15:04:05Z)"
+    echo "  --previous          Get logs from previous container instance"
+    echo ""
+    echo "Examples:"
+    echo "  kubelog default                         # Extract all pod logs from default namespace"
+    echo "  kubelog my-app -p nginx                 # Pods containing 'nginx' only"
+    echo "  kubelog production --since 1h           # Logs from last 1 hour"
+    echo "  kubelog staging -o /tmp/logs            # Save to /tmp/logs directory"
+}
+
+# Parameter initialization
+local namespace=""
+local follow=false
+local output_dir="."
+local pod_pattern=""
+local since=""
+local previous=false
+
+# Parameter parsing
+while [[ $# -gt 0 ]]; do
+    case $1 in
+        -h|--help)
+            show_help
+            return 0
+            ;;
+        -f|--follow)
+            follow=true
+            shift
+            ;;
+        -o|--output)
+            output_dir="$2"
+            shift 2
+            ;;
+        -p|--pod)
+            pod_pattern="$2"
+            shift 2
+            ;;
+        --since)
+            since="$2"
+            shift 2
+            ;;
+        --previous)
+            previous=true
+            shift
+            ;;
+        -*)
+            print -P "%F{red}Unknown option: $1%f"
+            show_help
+            return 1
+            ;;
+        *)
+            if [[ -z "$namespace" ]]; then
+                namespace="$1"
+            else
+                print -P "%F{red}Too many arguments: $1%f"
+                show_help
+                return 1
+            fi
+            shift
+            ;;
+    esac
+done
+
+# Check namespace parameter
+if [[ -z "$namespace" ]]; then
+    print -P "%F{red}Error: Please specify a namespace.%f"
+    show_help
+    return 1
+fi
+
+# Check kubectl command
+if ! command -v kubectl &> /dev/null; then
+    print -P "%F{red}Error: kubectl is not installed.%f"
+    return 1
+fi
+
+# Check namespace existence
+if ! kubectl get namespace "$namespace" &> /dev/null; then
+    print -P "%F{red}Error: Namespace '$namespace' does not exist.%f"
+    return 1
+fi
+
+# Create output directory
+if [[ "$output_dir" != "." ]]; then
+    mkdir -p "$output_dir"
+fi
+
+print -P "%F{blue}=== kubectl Log Extraction Script ===%f"
+print -P "%F{blue}Namespace: %F{green}$namespace%f"
+print -P "%F{blue}Output Directory: %F{green}$output_dir%f"
+
+# Get pod list
+print -P "%F{yellow}Fetching pod list...%f"
+
+local pod_list_cmd="kubectl get pods -n $namespace --no-headers -o custom-columns=':metadata.name,:status.phase'"
+local pod_list
+
+if [[ -n "$pod_pattern" ]]; then
+    pod_list=(${(f)"$(eval $pod_list_cmd | grep "$pod_pattern" | awk '$2=="Running" {print $1}')"})
+else
+    pod_list=(${(f)"$(eval $pod_list_cmd | awk '$2=="Running" {print $1}')"})
+fi
+
+if [[ ${#pod_list[@]} -eq 0 ]]; then
+    print -P "%F{red}No running pods found.%f"
+    return 1
+fi
+
+print -P "%F{green}Found running pods:%f"
+for pod in "${pod_list[@]}"; do
+    print -P "  - %F{green}$pod%f"
+done
+
+echo ""
+
+# Handle follow mode (first pod only)
+if [[ "$follow" == true ]]; then
+    local first_pod="${pod_list[1]}"
+    print -P "%F{yellow}Real-time monitoring mode: $first_pod%f"
+
+    local kubectl_cmd="kubectl logs -n $namespace $first_pod -f"
+    if [[ -n "$since" ]]; then
+        kubectl_cmd="$kubectl_cmd --since=$since"
+    fi
+    if [[ "$previous" == true ]]; then
+        kubectl_cmd="$kubectl_cmd --previous"
+    fi
+
+    print -P "%F{blue}Command: $kubectl_cmd%f"
+    eval $kubectl_cmd
+    return 0
+fi
+
+# Extract logs from each pod
+local success_count=0
+local total_count=${#pod_list[@]}
+local counter=1
+
+for pod in "${pod_list[@]}"; do
+    if [[ -z "$pod" ]]; then
+        continue
+    fi
+
+    print -P "%F{yellow}[$counter] Extracting logs from $pod...%f"
+
+    # Generate log filename
+    local log_file="$output_dir/${pod}.log"
+
+    # Build kubectl logs command
+    local kubectl_cmd="kubectl logs -n $namespace $pod"
+
+    if [[ -n "$since" ]]; then
+        kubectl_cmd="$kubectl_cmd --since=$since"
+    fi
+
+    if [[ "$previous" == true ]]; then
+        kubectl_cmd="$kubectl_cmd --previous"
+    fi
+
+    # Extract logs
+    if eval $kubectl_cmd > "$log_file" 2>/dev/null; then
+        local file_size=$(stat -f%z "$log_file" 2>/dev/null || stat -c%s "$log_file" 2>/dev/null || echo "0")
+        local file_size_kb=$((file_size / 1024))
+        print -P "  %F{green}✓ Success: $log_file (${file_size_kb}KB)%f"
+        ((success_count++))
+    else
+        print -P "  %F{red}✗ Failed: $pod (unable to fetch logs)%f"
+        rm -f "$log_file"
+    fi
+
+    ((counter++))
+done
+
+echo ""
+print -P "%F{blue}=== Extraction Complete ===%f"
+print -P "%F{green}Success: $success_count pods%f"
+print -P "%F{red}Failed: $((total_count - success_count)) pods%f"
+print -P "%F{blue}Log files location: $output_dir%f"
+
+# Display extracted file list
+if [[ $success_count -gt 0 ]]; then
+    print -P "%F{yellow}Extracted files:%f"
+    ls -la "$output_dir"/*.log 2>/dev/null | while read line; do
+        echo "  $line"
+    done
+fi

@@ -22,7 +22,7 @@ return {
 				end
 
 				map("grn", vim.lsp.buf.rename, "[R]e[n]ame")
-				map("gra", vim.lsp.buf.code_action, "[G]oto Code [A]ction", { "n", "x" })
+				--map("gra", vim.lsp.buf.code_action, "[G]oto Code [A]ction", { "n", "x" })
 
 				map("grr", has_fzf and fzf_lua.lsp_references or vim.lsp.buf.references, "[G]oto [R]eferences")
 				map("grb", function()

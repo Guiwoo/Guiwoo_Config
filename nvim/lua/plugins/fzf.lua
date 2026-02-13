@@ -102,6 +102,14 @@ return {
 			end,
 			desc = "diagnostics_workspace",
 		},
+    -- LSP --
+    {
+      "<leader>gra",
+      function ()
+        require("fzf-lua").lsp_code_actions() 
+      end,
+      desc ="Code Action"
+    }
 	},
 	opts = {
 		picker = {
@@ -109,7 +117,7 @@ return {
 			no_ignore = true,
 		},
 		fzf_opts = {
-			["--layout"] = "default",
+			["--layout"] = "reverse",
 		},
 		keymap = {
 			builtin = {
