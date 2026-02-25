@@ -1,7 +1,7 @@
 return {
 	{
 		"rebelot/kanagawa.nvim",
-    lazy = true,
+		lazy = true,
 		config = function()
 			require("kanagawa").setup({
 				compile = true,
@@ -22,14 +22,14 @@ return {
 	{
 		"catppuccin/nvim",
 		name = "catppuccin",
-    opts = {
-      flavor = "frappe"
-    },
-    config = function (_, opts)
-      --require("catppuccin").setup(opts)
-      --vim.cmd.colorscheme("catppuccin-frappe")
+		opts = {
+			flavor = "frappe",
+		},
+		config = function(_, opts)
+			--require("catppuccin").setup(opts)
+			--vim.cmd.colorscheme("catppuccin-frappe")
 			--vim.api.nvim_set_hl(0, "Visual", { bg = "#fe8019", fg = "#3c3836" })
-    end,
+		end,
 	},
 	{
 		"olimorris/onedarkpro.nvim",
@@ -56,6 +56,14 @@ return {
 				comments = "italic",
 				keywords = "bold",
 				types = "italic,bold",
+		opts = {
+			options = {
+				transparent = false,
+				styles = {
+					comments = "italic",
+					keywords = "bold",
+					types = "italic,bold",
+				},
 			},
 		},
 		config = function(_, opts)
