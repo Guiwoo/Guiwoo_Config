@@ -1,11 +1,11 @@
 # pane
 #background = 282c34
-theme = Dayfox
+theme = Duotone Dark
 #foreground = ffffff
-background-opacity = 1
+background-opacity = 0.88
 
 #focus
-unfocused-split-opacity = 0.7
+unfocused-split-opacity = 0.5
 
 # window
 #window-padding-color = background
@@ -29,10 +29,10 @@ quick-terminal-position = center
 #font-synthetic-style = italic
 font-family="CaskaydiaCove Nerd Font Mono"
 font-synthetic-style="bold-italic"
-font-size=13
+font-size=12
 
 # cursor
-cursor-color = #2C3E5D
+cursor-color = #C05A8C
 cursor-click-to-move = true
 cursor-style = block
 cursor-style-blink = true

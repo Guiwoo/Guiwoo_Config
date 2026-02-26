@@ -27,9 +27,15 @@ vim.opt.swapfile = false
 vim.opt.foldmethod = "indent"
 vim.opt.foldlevel = 99
 
-vim.opt.guicursor = table.concat({
-	"n:block", -- normal: 블록
-	"v:block", -- visual: 블록
-	"i:ver50", -- insert: 최대 굵은 바
-	"r-cr:hor35",
-}, ",")
+--vim.opt.guicursor = table.concat({
+--	"n:block", -- normal: 블록
+--	"v:block", -- visual: 블록
+--	"i:ver50", -- insert: 최대 굵은 바
+--	"r-cr:hor35",
+--}, ",")
+
+
+
+vim.opt.guicursor = "n-v-c:block-CursorNormal,i-ci:ver50-CursorInsert,r-cr:hor35-CursorNormal"
+vim.api.nvim_set_hl(0, "CursorNormal", { fg = "#2E3440", bg = "#EBCB8B" })
+vim.api.nvim_set_hl(0, "CursorInsert", { fg = "#2E3440", bg = "#A3BE8C" })
