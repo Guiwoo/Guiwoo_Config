@@ -1,7 +1,6 @@
 return {
 	{
-		"rebelot/kanagawa.nvim",
-		lazy = true,
+		"rebelot/kanagawa.nvim", lazy = true,
 		config = function()
 			require("kanagawa").setup({
 				compile = true,
@@ -70,7 +69,7 @@ return {
 		},
 		config = function(_, opts)
 			require("nightfox").setup(opts)
-			vim.cmd.colorscheme("nordfox")
+			vim.cmd.colorscheme("duskfox")
 			vim.api.nvim_set_hl(0, "Visual", { bg = "#fe8019", fg = "#3c3836" })
 			local function cursor_normal()
 				vim.api.nvim_set_hl(0, "Cursor", { fg = "#2E3440", bg = "#EBCB8B" })

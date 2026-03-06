@@ -33,14 +33,13 @@ return {
 		scope = { enabled = true },
 		statuscolumn = {
       enabled = true ,
-      left = { "mark","sign" },
-      right = { "fold", "git" },
+      left = { "mark","sign" }, right = { "fold", "git" },
       folds = {
         open = false,
         git_hl = true
       },
       git = {
-        patterns = { "GitSign", "MinDiffSign" }
+        patterns = { "GitSign" }
       },
       refresh = 100,
     },
@@ -48,6 +47,20 @@ return {
 		command = { enabled = true },
     animate = {
       enabled = true,
+    },
+    gitbrowse = { 
+      notify = true,
+      what = "file"
     }
 	},
+  keys = {
+    {
+      "<leader>gB",
+      function()
+        Snacks.gitbrowse()
+      end,
+      desc = "Git Browse",
+      mode = { "n", "v" },
+    },
+  },
 }
