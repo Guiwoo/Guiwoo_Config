@@ -12,6 +12,9 @@ return {
     },
 
     current_line_blame = false,
+    on_attach = function (bufnr)
+     vim.api.nvim_set_hl(0, "GitSignsCurrentLineBlame", { fg = "#a9b1d6", bg = "#292e42", italic = true })
+    end,
 
     current_line_blame_opts = {
       delay = 500,

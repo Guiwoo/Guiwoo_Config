@@ -3,7 +3,8 @@ return {
 	opts = {
 		formatters_by_ft = {
 			lua = { "stylua" },
-			go = { "gofmt" },
+			go = { "gofmt", "goimports" },
+      json = { "prettier" },
 		},
 		format_on_save = {
 			timeout_ms = 500,

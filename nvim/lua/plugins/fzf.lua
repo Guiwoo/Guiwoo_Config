@@ -70,7 +70,9 @@ return {
 		{
 			"<leader>f/",
 			function()
-				require("fzf-lua").lgrep_curbuf()
+				require("fzf-lua").grep_curbuf({
+          search = vim.fn.expand("<cword>")
+        })
 			end,
 			desc = "Find Existing Buffers",
 		},

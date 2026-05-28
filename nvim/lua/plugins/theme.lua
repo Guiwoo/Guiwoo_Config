@@ -1,10 +1,11 @@
 return {
 	{
-		"rebelot/kanagawa.nvim", lazy = true,
+		"rebelot/kanagawa.nvim",
+		lazy = true,
 		config = function()
 			require("kanagawa").setup({
 				compile = true,
-				transparent = true,
+				transparent = false,
 				theme = "wave",
 				background = {
 					dark = "wave",
@@ -26,8 +27,20 @@ return {
 		},
 		config = function(_, opts)
 			require("catppuccin").setup(opts)
-			--vim.cmd.colorscheme("catppuccin-latte")
-			--vim.api.nvim_set_hl(0, "Visual", { bg = "#fe8019", fg = "#3c3836" })
+			vim.cmd.colorscheme("catppuccin-frappe")
+			vim.api.nvim_set_hl(0, "Visual", { fg = "#1f1f28", bg = "#ff9e3b", bold = false })
+			local function cursor_normal()
+				vim.api.nvim_set_hl(0, "Cursor", { fg = "#2E3440", bg = "#EBCB8B" })
+				vim.api.nvim_set_hl(0, "lCursor", { fg = "#2E3440", bg = "#EBCB8B" })
+			end
+			local function cursor_insert()
+				vim.api.nvim_set_hl(0, "Cursor", { fg = "#2E3440", bg = "#A3BE8C" })
+				vim.api.nvim_set_hl(0, "lCursor", { fg = "#2E3440", bg = "#A3BE8C" })
+			end
+			local group = vim.api.nvim_create_augroup("CursorColors", { clear = true })
+			vim.api.nvim_create_autocmd("ColorScheme", { group = group, callback = cursor_normal })
+			vim.api.nvim_create_autocmd("InsertEnter", { group = group, callback = cursor_insert })
+			vim.api.nvim_create_autocmd("InsertLeave", { group = group, callback = cursor_normal })
 		end,
 	},
 	{
@@ -50,6 +63,7 @@ return {
 	},
 	{
 		"EdenEast/nightfox.nvim",
+    lazy = true,
 		opts = {
 			styles = {
 				comments = "italic",
@@ -58,19 +72,14 @@ return {
 				opts = {
 					options = {
 						transparent = false,
-						styles = {
-							comments = "italic",
-							keywords = "bold",
-							types = "italic,bold",
-						},
 					},
 				},
 			},
 		},
 		config = function(_, opts)
 			require("nightfox").setup(opts)
-			vim.cmd.colorscheme("duskfox")
-			vim.api.nvim_set_hl(0, "Visual", { bg = "#fe8019", fg = "#3c3836" })
+			vim.cmd.colorscheme("nordfox")
+			vim.api.nvim_set_hl(0, "Visual", { fg = "#1f1f28", bg = "#ff9e3b", bold = false })
 			local function cursor_normal()
 				vim.api.nvim_set_hl(0, "Cursor", { fg = "#2E3440", bg = "#EBCB8B" })
 				vim.api.nvim_set_hl(0, "lCursor", { fg = "#2E3440", bg = "#EBCB8B" })
@@ -83,7 +92,11 @@ return {
 			vim.api.nvim_create_autocmd("ColorScheme", { group = group, callback = cursor_normal })
 			vim.api.nvim_create_autocmd("InsertEnter", { group = group, callback = cursor_insert })
 			vim.api.nvim_create_autocmd("InsertLeave", { group = group, callback = cursor_normal })
-
 		end,
 	},
+	{
+		"scottmckendry/cyberdream.nvim",
+		lazy = true,
+		priority = 1000,
+	}
 }

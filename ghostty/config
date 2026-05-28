@@ -1,6 +1,7 @@
 # pane
 #background = 282c34
-theme = Duotone Dark
+#theme = Duotone Dark
+theme = Doom Peacock
 #foreground = ffffff
 background-opacity = 0.88
 
@@ -29,7 +30,7 @@ quick-terminal-position = center
 #font-synthetic-style = italic
 font-family="CaskaydiaCove Nerd Font Mono"
 font-synthetic-style="bold-italic"
-font-size=12
+font-size=11.1
 
 # cursor
 cursor-color = #C05A8C
