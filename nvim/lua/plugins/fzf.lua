@@ -71,8 +71,8 @@ return {
 			"<leader>f/",
 			function()
 				require("fzf-lua").grep_curbuf({
-          search = vim.fn.expand("<cword>")
-        })
+					search = vim.fn.expand("<cword>"),
+				})
 			end,
 			desc = "Find Existing Buffers",
 		},
@@ -104,22 +104,26 @@ return {
 			end,
 			desc = "diagnostics_workspace",
 		},
-    -- LSP --
-    {
-      "<leader>gra",
-      function ()
-        require("fzf-lua").lsp_code_actions() 
-      end,
-      desc ="Code Action"
-    }
+		-- LSP --
+		{
+			"<leader>gra",
+			function()
+				require("fzf-lua").lsp_code_actions()
+			end,
+			desc = "Code Action",
+		},
 	},
 	opts = {
 		picker = {
 			hidden = true,
 			no_ignore = true,
 		},
+    grep = {
+      rg_opts = "--column --line-number --no-heading --color=always --smart-case --max-columns=4090 -e",
+    },
 		fzf_opts = {
 			["--layout"] = "reverse",
+      ["--exact"] = true,
 		},
 		keymap = {
 			builtin = {

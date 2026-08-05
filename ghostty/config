@@ -3,7 +3,7 @@
 #theme = Duotone Dark
 theme = Doom Peacock
 #foreground = ffffff
-background-opacity = 0.88
+background-opacity = 1.0
 
 #focus
 unfocused-split-opacity = 0.5
@@ -33,7 +33,7 @@ font-synthetic-style="bold-italic"
 font-size=11.1
 
 # cursor
-cursor-color = #C05A8C
+cursor-color = #ffeb33
 cursor-click-to-move = true
 cursor-style = block
 cursor-style-blink = true
@@ -71,10 +71,10 @@ clipboard-write=allow
 clipboard-trim-trailing-spaces=true
 
 # keybinu
-keybind = super+shift+u=resize_split:up,50
-keybind = super+shift+d=resize_split:down,50
-keybind = super+shift+l=resize_split:left,50
-keybind = super+shift+r=resize_split:right,50
+keybind = ctrl+o>u=resize_split:up,50
+keybind = ctrl+o>d=resize_split:down,50
+keybind = ctrl+o>l=resize_split:left,50
+keybind = ctrl+o>r=resize_split:right,50
 
 keybind = ctrl+o>x=close_surface
 keybind = ctrl+o>v=new_split:right
@@ -86,3 +86,6 @@ keybind = ctrl+k=goto_split:up
 keybind = ctrl+h=goto_split:left
 keybind = ctrl+l=goto_split:right
 keybind = shift+enter=text:\n
+
+
+keybind = ctrl+o>e=equalize_splits

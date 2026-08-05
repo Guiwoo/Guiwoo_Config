@@ -1,0 +1,11 @@
+#!/bin/zsh
+
+cd /원하는/작업/폴더 || exit 1
+
+# Claude Code 실행 후 ping 요청
+osascript <<'EOF'
+tell application "Terminal"
+  activate
+  do script "cd /Users/guiwoopark/.config && claude 'ping'"
+end tell
+EOF

@@ -1,20 +1,86 @@
+local active_theme = {
+	plugin = "nightfox",
+	colorscheme = "carbonfox",
+}
+
+local function setup_theme(module_name)
+	return function(_, opts)
+		require(module_name).setup(opts)
+	end
+end
+
+local function set_hl(name, value)
+	vim.api.nvim_set_hl(0, name, value)
+end
+
+local function apply_highlights(specs)
+	for name, value in pairs(specs) do
+		set_hl(name, value)
+	end
+end
+
+local function apply_cursor(colors)
+	apply_highlights({
+		Cursor = colors,
+		lCursor = colors,
+	})
+end
+
+local function create_augroup(name)
+	return vim.api.nvim_create_augroup(name, { clear = true })
+end
+
+local function configure_nightfox_highlights()
+	apply_highlights({
+		Visual = { fg = "#1f1f28", bg = "#ff9e3b", bold = false },
+	})
+
+	local cursor_colors = { fg = "#192330", bg = "#FFD75F" }
+	local apply_theme_overrides = function()
+		apply_cursor(cursor_colors)
+	end
+
+	local group = create_augroup("CursorColors")
+	vim.api.nvim_create_autocmd("ColorScheme", {
+		group = group,
+		callback = apply_theme_overrides,
+	})
+	vim.api.nvim_create_autocmd({ "InsertEnter", "InsertLeave" }, {
+		group = group,
+		callback = apply_theme_overrides,
+	})
+
+	apply_theme_overrides()
+end
+
+local function configure_active_theme(plugin_name, colorscheme, after_setup)
+	return function(_, opts)
+		require(plugin_name).setup(opts)
+		if active_theme.plugin ~= plugin_name then
+			return
+		end
+
+		vim.cmd.colorscheme(colorscheme)
+		if after_setup then
+			after_setup()
+		end
+	end
+end
+
 return {
 	{
 		"rebelot/kanagawa.nvim",
 		lazy = true,
-		config = function()
-			require("kanagawa").setup({
-				compile = true,
-				transparent = false,
-				theme = "wave",
-				background = {
-					dark = "wave",
-					light = "lotus",
-				},
-			})
-			--vim.cmd("colorscheme kanagawa-dragon")
-			--vim.api.nvim_set_hl(0, "Visual", { bg = "#fe8019", fg = "#3c3836" })
-		end,
+		opts = {
+			compile = true,
+			transparent = false,
+			theme = "wave",
+			background = {
+				dark = "wave",
+				light = "lotus",
+			},
+		},
+		config = setup_theme("kanagawa"),
 		build = function()
 			vim.cmd("KanagawaCompile")
 		end,
@@ -22,29 +88,16 @@ return {
 	{
 		"catppuccin/nvim",
 		name = "catppuccin",
+		lazy = true,
 		opts = {
 			flavor = "frappe",
+			transparent_background = true,
 		},
-		config = function(_, opts)
-			require("catppuccin").setup(opts)
-			vim.cmd.colorscheme("catppuccin-frappe")
-			vim.api.nvim_set_hl(0, "Visual", { fg = "#1f1f28", bg = "#ff9e3b", bold = false })
-			local function cursor_normal()
-				vim.api.nvim_set_hl(0, "Cursor", { fg = "#2E3440", bg = "#EBCB8B" })
-				vim.api.nvim_set_hl(0, "lCursor", { fg = "#2E3440", bg = "#EBCB8B" })
-			end
-			local function cursor_insert()
-				vim.api.nvim_set_hl(0, "Cursor", { fg = "#2E3440", bg = "#A3BE8C" })
-				vim.api.nvim_set_hl(0, "lCursor", { fg = "#2E3440", bg = "#A3BE8C" })
-			end
-			local group = vim.api.nvim_create_augroup("CursorColors", { clear = true })
-			vim.api.nvim_create_autocmd("ColorScheme", { group = group, callback = cursor_normal })
-			vim.api.nvim_create_autocmd("InsertEnter", { group = group, callback = cursor_insert })
-			vim.api.nvim_create_autocmd("InsertLeave", { group = group, callback = cursor_normal })
-		end,
+		--config = configure_active_theme("catppuccin", active_theme.colorscheme, configure_nightfox_highlights),
 	},
 	{
 		"olimorris/onedarkpro.nvim",
+		lazy = true,
 		name = "onedark",
 		priority = 1002,
 	},
@@ -55,15 +108,12 @@ return {
 			style = "day",
 			transparent = true,
 		},
-		config = function(_, opts)
-			--require("tokyonight").setup(opts)
-			--vim.cmd.colorscheme("tokyonight-day")
-			--vim.api.nvim_set_hl(0, "Visual", { bg = "#fe8019", fg = "#3c3836" })
-		end,
+		config = setup_theme("tokyonight"),
 	},
 	{
 		"EdenEast/nightfox.nvim",
-    lazy = true,
+    name = "nightfox",
+		--lazy = true,
 		opts = {
 			styles = {
 				comments = "italic",
@@ -76,27 +126,6 @@ return {
 				},
 			},
 		},
-		config = function(_, opts)
-			require("nightfox").setup(opts)
-			vim.cmd.colorscheme("nordfox")
-			vim.api.nvim_set_hl(0, "Visual", { fg = "#1f1f28", bg = "#ff9e3b", bold = false })
-			local function cursor_normal()
-				vim.api.nvim_set_hl(0, "Cursor", { fg = "#2E3440", bg = "#EBCB8B" })
-				vim.api.nvim_set_hl(0, "lCursor", { fg = "#2E3440", bg = "#EBCB8B" })
-			end
-			local function cursor_insert()
-				vim.api.nvim_set_hl(0, "Cursor", { fg = "#2E3440", bg = "#A3BE8C" })
-				vim.api.nvim_set_hl(0, "lCursor", { fg = "#2E3440", bg = "#A3BE8C" })
-			end
-			local group = vim.api.nvim_create_augroup("CursorColors", { clear = true })
-			vim.api.nvim_create_autocmd("ColorScheme", { group = group, callback = cursor_normal })
-			vim.api.nvim_create_autocmd("InsertEnter", { group = group, callback = cursor_insert })
-			vim.api.nvim_create_autocmd("InsertLeave", { group = group, callback = cursor_normal })
-		end,
+		config = configure_active_theme("nightfox", active_theme.colorscheme, configure_nightfox_highlights),
 	},
-	{
-		"scottmckendry/cyberdream.nvim",
-		lazy = true,
-		priority = 1000,
-	}
 }

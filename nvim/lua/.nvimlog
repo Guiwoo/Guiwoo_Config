@@ -1,0 +1,3 @@
+WRN 2026-06-04T11:54:22.026 ?.93766    server_start:199: Failed to start server: operation not permitted: /var/folders/bl/tmj4r7hx0p12hvtlf73cfy7h0000gn/T/nvim.guiwoopark/ofOrFI/nvim.93766.0
+WRN 2026-06-04T11:54:22.130 ?.93766    server_start:199: Failed to start server: operation not permitted: /var/folders/bl/tmj4r7hx0p12hvtlf73cfy7h0000gn/T/nvim.guiwoopark/ofOrFI/fzf-lua.1780541662.93766.1
+WRN 2026-06-04T11:54:22.131 ?.93766    server_start:199: Failed to start server: operation not permitted: /var/folders/bl/tmj4r7hx0p12hvtlf73cfy7h0000gn/T/nvim.guiwoopark/ofOrFI/fzf-lua.1780541662.93766.2
